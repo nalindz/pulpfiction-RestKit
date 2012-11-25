@@ -414,6 +414,7 @@ static RKManagedObjectStore *defaultObjectStore = nil;
     [self.primaryManagedObjectContext performSelectorOnMainThread:@selector(mergeChangesFromContextDidSaveNotification:)
                                                 withObject:notification
                                              waitUntilDone:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changesMerged" object:self userInfo:notification.userInfo];
 }
 
 - (void)mergeChanges:(NSNotification *)notification
